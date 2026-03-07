@@ -1,14 +1,5 @@
 
 
-a {
-  font-weight: 500;
-  color: #7C3AED;
-  text-decoration: inherit;
-}
-a:hover {
-  color: #c803ff;
-}
-
 ::selection {
   background-color: #7C3AED ;
   color: white;

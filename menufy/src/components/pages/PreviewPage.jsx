@@ -6,8 +6,5 @@ const PreviewPage = () => {
   )
 }
 
-::selection {
-  background-color: #f97316; /* naranja, cámbialo al color que quieras */
-  color: white;
-}
+
 export default PreviewPage
