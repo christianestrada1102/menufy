@@ -6,15 +6,18 @@ export const MenuContext = createContext();
 export const MenuProvider = ({ children }) => {
     const [dishes,setDishes] = useState([]);
     const [categories,setCategories] = useState(['Entradas','Platos Fuertes','Postres','Bebidas','Especiales']);
+    const [loaded, setLoaded] = useState(false) 
 
-    useEffect(() => {
-        const stored = localStorage.getItem(STORAGE_KEY)
-        if(stored) setDishes(JSON.parse(stored))
-     }, [])
+useEffect(() => {
+  const stored = localStorage.getItem(STORAGE_KEY)
+  if (stored) setDishes(JSON.parse(stored))
+  setLoaded(true)
+}, [])
 
-      useEffect(() => {
-        localStorage.setItem(STORAGE_KEY, JSON.stringify(dishes))
-      }, [dishes])
+  useEffect(() => {
+  if (!loaded) return
+  localStorage.setItem(STORAGE_KEY, JSON.stringify(dishes))
+}, [dishes, loaded])
 
       const addDish = (dish) => {
         setDishes(prev => [...prev, {...dish, id: Date.now()}])

@@ -1,10 +1,13 @@
-import { useState, useContext } from "react"
-import { useNavigate } from "react-router-dom"
+import { useState, useContext, useEffect } from "react"
+import { useNavigate, useParams } from "react-router-dom"
 import { MenuContext } from "../../context/MenuContext"
 
 const FormPage = () => {
-  const { addDish, categories } = useContext(MenuContext)
+  const { addDish, updateDish, categories, dishes } = useContext(MenuContext)
   const navigate = useNavigate()
+  const { id } = useParams()
+
+  const dishToEdit = dishes.find(d => d.id === Number(id))
 
   const [form, setForm] = useState({
     name: "",
@@ -14,6 +17,10 @@ const FormPage = () => {
     image: "",
     available: true
   })
+
+  useEffect(() => {
+    if (dishToEdit) setForm(dishToEdit)
+  }, [dishToEdit])
 
   const handleChange = (e) => {
     const { name, value, type, checked } = e.target
@@ -26,63 +33,69 @@ const FormPage = () => {
   const handleSubmit = (e) => {
     e.preventDefault()
     if (!form.name || !form.price || !form.category) return
-    addDish(form)
+    if (dishToEdit) {
+      updateDish(Number(id), form)
+    } else {
+      addDish(form)
+    }
     navigate('/menu')
   }
 
   return (
     <div className="flex flex-col gap-6 max-w-xl">
 
-      <div className="border-b border-gray-200 pb-4">
-        <h1 className="text-xl font-semibold text-gray-900">Nuevo platillo</h1>
+      <div className="border-b border-white/10 pb-4">
+        <h1 className="text-xl font-semibold text-white">
+          {dishToEdit ? 'Editar platillo' : 'Nuevo platillo'}
+        </h1>
         <p className="text-sm text-gray-500 mt-0.5">Completa la información del platillo</p>
       </div>
 
       <form onSubmit={handleSubmit} className="flex flex-col gap-4">
 
         <div className="flex flex-col gap-1">
-          <label className="text-sm text-gray-600">Nombre *</label>
+          <label className="text-sm text-gray-400">Nombre</label>
           <input
             name="name"
             value={form.name}
             onChange={handleChange}
             placeholder="Ej. Tacos de pastor"
-            className="border border-gray-300 px-3 py-2 text-sm outline-none focus:border-violet-500"
+            className="bg-[#1c1c1f] border border-white/10 px-3 py-2 text-sm text-white placeholder-gray-600 outline-none focus:border-[#A64D79]"
           />
         </div>
 
         <div className="flex flex-col gap-1">
-          <label className="text-sm text-gray-600">Descripción</label>
+          <label className="text-sm text-gray-400">Descripción</label>
           <textarea
             name="description"
             value={form.description}
             onChange={handleChange}
             placeholder="Describe el platillo brevemente"
             rows={3}
-            className="border border-gray-300 px-3 py-2 text-sm outline-none focus:border-violet-500 resize-none"
+            className="bg-[#1c1c1f] border border-white/10 px-3 py-2 text-sm text-white placeholder-gray-600 outline-none focus:border-[#A64D79] resize-none"
           />
         </div>
 
         <div className="flex gap-3">
           <div className="flex flex-col gap-1 flex-1">
-            <label className="text-sm text-gray-600">Precio *</label>
+            <label className="text-sm text-gray-400">Precio</label>
             <input
               name="price"
               value={form.price}
               onChange={handleChange}
               placeholder="0.00"
               type="number"
-              className="border border-gray-300 px-3 py-2 text-sm outline-none focus:border-violet-500"
+              className="bg-[#1c1c1f] border border-white/10 px-3 py-2 text-sm text-white placeholder-gray-600 outline-none focus:border-[#A64D79]"
             />
           </div>
 
           <div className="flex flex-col gap-1 flex-1">
-            <label className="text-sm text-gray-600">Categoría *</label>
+            <label className="text-sm text-gray-400">Categoría</label>
             <select
               name="category"
               value={form.category}
               onChange={handleChange}
-              className="border border-gray-300 px-3 py-2 text-sm outline-none focus:border-violet-500 bg-white"
+              className="bg-[#1c1c1f] border border-white/10 px-3 py-2 text-sm text-white outline-none focus:border-[#A64D79]"
             >
               <option value="">Selecciona una</option>
               {categories.map(cat => (
@@ -93,13 +106,13 @@ const FormPage = () => {
         </div>
 
         <div className="flex flex-col gap-1">
-          <label className="text-sm text-gray-600">URL de imagen</label>
+          <label className="text-sm text-gray-400">URL de imagen</label>
           <input
             name="image"
             value={form.image}
             onChange={handleChange}
             placeholder="https://..."
-            className="border border-gray-300 px-3 py-2 text-sm outline-none focus:border-violet-500"
+            className="bg-[#1c1c1f] border border-white/10 px-3 py-2 text-sm text-white placeholder-gray-600 outline-none focus:border-[#A64D79]"
           />
         </div>
 
@@ -110,16 +123,16 @@ const FormPage = () => {
             id="available"
             checked={form.available}
             onChange={handleChange}
-            className="accent-violet-600"
+            className="accent-[#6A1E55]"
           />
-          <label htmlFor="available" className="text-sm text-gray-600">Disponible</label>
+          <label htmlFor="available" className="text-sm text-gray-400">Disponible</label>
         </div>
 
         <div className="flex gap-3 pt-2">
-          <button type="submit" className="bg-violet-600 text-white text-sm px-4 py-2 hover:bg-violet-700 transition">
+          <button type="submit" className="bg-[#6A1E55] text-white text-sm px-4 py-2 hover:bg-[#A64D79] transition">
             Guardar platillo
           </button>
-          <button type="button" onClick={() => navigate('/menu')} className="border border-gray-300 text-gray-600 text-sm px-4 py-2 hover:border-gray-400 transition">
+          <button type="button" onClick={() => navigate('/menu')} className="border border-white/10 text-gray-400 text-sm px-4 py-2 hover:border-white/30 transition">
             Cancelar
           </button>
         </div>
@@ -128,5 +141,4 @@ const FormPage = () => {
     </div>
   )
 }
-
 export default FormPage

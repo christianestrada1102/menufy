@@ -8,34 +8,34 @@ const DashPage = () => {
   const agotados = dishes.filter(d => !d.available).length
   const disponibles = dishes.filter(d => d.available).length
 
-return (
+  return (
     <div className="flex flex-col gap-6">
 
-      <div className="border-b border-gray-200 pb-4">
-        <h1 className="text-xl font-semibold text-gray-900">Panel de administración</h1>
+      <div className="border-b border-white/10 pb-4">
+        <h1 className="text-xl font-semibold text-white">Panel de administración</h1>
         <p className="text-sm text-gray-500 mt-0.5">Gestiona el menú de tu restaurante</p>
       </div>
 
       <div className="grid grid-cols-3 gap-3">
-        <div className="bg-white border border-gray-200 p-5">
-          <p className="text-xs text-gray-400 uppercase tracking-wide">Total platillos</p>
-          <p className="text-3xl font-semibold text-violet-600 mt-2">{total}</p>
+        <div className="bg-[#1c1c1f] border border-white/10 p-5">
+          <p className="text-xs text-gray-500 uppercase tracking-wide">Total platillos</p>
+          <p className="text-3xl font-semibold text-white mt-2">{total}</p>
         </div>
-        <div className="bg-white border border-gray-200 p-5">
-          <p className="text-xs text-gray-400 uppercase tracking-wide">Disponibles</p>
-          <p className="text-3xl font-semibold text-green-500 mt-2">{disponibles}</p>
+        <div className="bg-[#1c1c1f] border border-white/10 p-5">
+          <p className="text-xs text-gray-500 uppercase tracking-wide">Disponibles</p>
+          <p className="text-3xl font-semibold text-green-400 mt-2">{disponibles}</p>
         </div>
-        <div className="bg-white border border-gray-200 p-5">
-          <p className="text-xs text-gray-400 uppercase tracking-wide">Agotados</p>
+        <div className="bg-[#1c1c1f] border border-white/10 p-5">
+          <p className="text-xs text-gray-500 uppercase tracking-wide">Agotados</p>
           <p className="text-3xl font-semibold text-red-400 mt-2">{agotados}</p>
         </div>
       </div>
 
       <div className="flex gap-3 pt-2">
-        <Link to="/menu/new" className="bg-violet-600 text-white text-sm px-4 py-2 hover:bg-violet-700 transition">
+        <Link to="/menu/new" className="bg-[#6A1E55] text-white text-sm px-4 py-2 hover:bg-[#A64D79] transition">
           + Nuevo platillo
         </Link>
-        <Link to="/preview" className="border border-gray-300 text-gray-600 text-sm px-4 py-2 hover:border-gray-400 transition">
+        <Link to="/preview" className="border border-white/10 text-gray-400 text-sm px-4 py-2 hover:border-white/30 transition">
           Ver mi menú
         </Link>
       </div>
@@ -43,5 +43,4 @@ return (
     </div>
   )
 }
-
 export default DashPage
