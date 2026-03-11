@@ -89,7 +89,7 @@ const MenuPage = () => {
                       { duration: 5000 }
                     )
                   }}
-                  className="p-2 text-gray-500 hover:text-red-400 transition"
+                  className="p-2  text-gray-500  hover:text-red-400 transition"
                   title="Eliminar"
                 >
                   <Trash2 size={16} />

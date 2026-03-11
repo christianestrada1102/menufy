@@ -83,7 +83,7 @@ const FormPage = () => {
               name="price"
               value={form.price}
               onChange={handleChange}
-              placeholder="0.00"
+              placeholder="$0.00"
               type="number"
               className="bg-[#1c1c1f] border border-white/10 px-3 py-2 text-sm text-white placeholder-gray-600 outline-none focus:border-[#A64D79]"
             />
