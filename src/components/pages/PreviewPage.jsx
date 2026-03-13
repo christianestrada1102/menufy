@@ -12,12 +12,12 @@ const PreviewPage = () => {
     <div className="flex flex-col gap-10 max-w-3xl mx-auto">
 
       <div className="text-center pt-4">
-        <h1 className="text-3xl font-bold text-white tracking-tight">Nuestro menú</h1>
-        <p className="text-sm text-gray-500 mt-1">Solo platillos disponibles</p>
+        <img src="/public/menufffu.png" alt="MenuFy" className="h-24 mx-auto" />
+        <p className="text-sm text-gray-500 mt-1">Descubre lo que tenemos para ti</p>
       </div>
 
       {availableDishes.length === 0 ? (
-        <p className="text-center text-gray-600 py-16 text-sm">No hay platillos disponibles por el momento.</p>
+        <p className="text-center text-gray-600 py-16 text-sm">No hay platillos disponibles por el moento</p>
       ) : (
         categoriesWithDishes.map(cat => (
           <div key={cat} className="flex flex-col gap-4">
@@ -33,7 +33,7 @@ const PreviewPage = () => {
                   <div key={dish.id} className="flex items-center gap-4 bg-[#1c1c1f] border border-white/10 p-4">
 
                     {dish.image && (
-                      <img src={dish.image} alt={dish.name} className="w-16 h-16 object-cover flex-shrink-0" />
+                      <img src={dish.image} alt={dish.name} className="w-16 h-16 object-cover shrink-0" />
                     )}
 
                     <div className="flex-1">
@@ -43,7 +43,7 @@ const PreviewPage = () => {
                       )}
                     </div>
 
-                    <p className="text-sm font-semibold text-[#A64D79] flex-shrink-0">${dish.price}</p>
+                    <p className="text-sm font-semibold text-[#A64D79] shrink-0">${dish.price}</p>
 
                   </div>
                 ))
