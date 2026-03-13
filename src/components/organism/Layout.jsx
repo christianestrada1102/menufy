@@ -1,4 +1,5 @@
 import Nav from './nav'
+import Footer from './Footer'
 
 const Layout = ({ children }) => {
     return (
@@ -7,6 +8,7 @@ const Layout = ({ children }) => {
         <main className="max-w-7xl mx-auto px-6 py-8">
             {children}
         </main>
+        <Footer />
         </div>
     )
 }
