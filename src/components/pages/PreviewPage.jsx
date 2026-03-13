@@ -12,7 +12,7 @@ const PreviewPage = () => {
     <div className="flex flex-col gap-10 max-w-3xl mx-auto">
 
       <div className="text-center pt-4">
-        <img src="/public/menufffu.png" alt="MenuFy" className="h-24 mx-auto" />
+        <img src="/menufffu.png" alt="MenuFy" className="h-24 mx-auto" />
         <p className="text-sm text-gray-500 mt-1">Descubre lo que tenemos para ti</p>
       </div>
 
